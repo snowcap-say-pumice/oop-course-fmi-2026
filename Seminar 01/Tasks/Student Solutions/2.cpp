@@ -60,28 +60,22 @@ Request enterRequest()
     return request;
 }
 
-char getIssue(Request request)
+char getIssue(const Request& request)
 {
     switch (request.issue)
     {
     case Issue::Engine:
         return 'E';
-        break;
     case Issue::Brakes:
         return 'B';
-        break;
     case Issue::Tires:
         return 'T';
-        break;
     case Issue::Gearbox:
         return 'G';
-        break;
     case Issue::Suspension:
         return 'S';
-        break;
     default:
         return 'O';
-        break;
     }
 }
 char getStatus(Request request)
@@ -90,16 +84,13 @@ char getStatus(Request request)
     {
     case Status::Waiting:
         return 'W';
-        break;
     case Status::InProgress:
         return 'I';
-        break;
     default:
         return 'D';
-        break;
     }
 }
-void printRequest(Request request)
+void printRequest(const Request& request)
 {
     std::cout << "\nLicense plate: " << request.license_plate;
     std::cout << "\n Issue: " << getIssue(request);
@@ -107,11 +98,11 @@ void printRequest(Request request)
     std::cout << "\n Status: " << getStatus(request);
 }
 
-void printRequestByIssue(Request requests[MAX_REQUESTS], int n, Issue issue)
+void printRequestByIssue(const Request requests[MAX_REQUESTS], int n, Issue issue)
 {
     for (int i = 0; i < n; i++)
     {
-        if (requests->issue == issue)
+        if (requests[i].issue == issue)
             printRequest(requests[i]);
     }
 }
@@ -123,11 +114,11 @@ void swap(Request &req1, Request &req2)
     req2 = temp;
 }
 
-void printRequestByStatus(Request requests[MAX_REQUESTS], int n, Status status)
+void printRequestByStatus(const Request requests[MAX_REQUESTS], int n, Status status)
 {
     for (int i = 0; i < n; i++)
     {
-        if (requests->status == status)
+        if (requests[i].status == status)
             printRequest(requests[i]);
     }
 }
@@ -144,7 +135,7 @@ void sortByUrgency(Request requests[MAX_REQUESTS], int n)
     }
 }
 
-void printRequests(Request requests[MAX_REQUESTS], int n)
+void printRequests(const Request requests[MAX_REQUESTS], int n)
 {
     for (int i = 0; i < n; i++)
     {
