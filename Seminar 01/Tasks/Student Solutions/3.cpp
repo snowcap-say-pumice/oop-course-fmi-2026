@@ -22,11 +22,15 @@ void swap(Triangle &t1, Triangle &t2)
     t2 = temp;
 }
 
-bool isValidTriangle(Triangle t)
+double findArea(const Triangle& t)
+{
+    return (1.0 / 2) * (std::abs(double(t.b.x - t.a.x) * (t.c.y - t.a.y) - double(t.c.x - t.a.x) * (t.b.y - t.a.y)));
+}
+
+bool isValidTriangle(const Triangle& t)
 {
     double eps = 0.000001;
-    double area = (double(1) / 2) * (std::abs(double(t.b.x - t.a.x) * (t.c.y - t.a.y) - double(t.c.x - t.a.x) * (t.b.y - t.a.y)));
-    if (std::abs(area) < eps)
+     if (findArea(t) < eps)
     {
         std::cout << "\nInvalid\n";
         return false;
@@ -34,10 +38,6 @@ bool isValidTriangle(Triangle t)
     return true;
 }
 
-double findArea(Triangle t)
-{
-    return (1.0 / 2) * (std::abs(double(t.b.x - t.a.x) * (t.c.y - t.a.y) - double(t.c.x - t.a.x) * (t.b.y - t.a.y)));
-}
 
 void sortByArea(Triangle t[MAX_TRIANGLES], int n)
 {
@@ -53,7 +53,7 @@ void sortByArea(Triangle t[MAX_TRIANGLES], int n)
     }
 }
 
-void printTriangle(Triangle t)
+void printTriangle(const Triangle& t)
 {
     std::cout << "\n";
     std::cout << "(" << t.a.x << "," << t.a.y << "), ";
@@ -62,7 +62,7 @@ void printTriangle(Triangle t)
     std::cout << "Area: " << findArea(t);
 }
 
-void printAllTriangles(Triangle t[MAX_TRIANGLES], int n)
+void printAllTriangles(const Triangle t[MAX_TRIANGLES], int n)
 {
     for (int i = 0; i < n; i++)
     {
