@@ -59,7 +59,7 @@ bool isWholeNumber(const RationalNumber& rationalNumber) {
 void printRationalNumber(const RationalNumber& rationalNumber) {
     bool negativeDenominator = rationalNumber.denominator < 0;
     bool negativeNumerator = rationalNumber.numerator < 0;
-    bool isNegative = !(negativeDenominator && negativeNumerator) && (rationalNumber.denominator < 0 || rationalNumber.numerator < 0);
+    bool isNegative = !(negativeDenominator && negativeNumerator) && (negativeDenominator || negativeNumerator);
     cout << (isNegative ? "-(" : "") << abs(rationalNumber.numerator) << "/" << abs(rationalNumber.denominator) << (isNegative ? ")" : "") << '\n';
 }
 
